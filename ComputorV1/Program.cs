@@ -31,9 +31,15 @@ namespace ComputorV1
                 Console.WriteLine("Reduced form: {0}=0", polynominalResolvedSolution.ReducedForm);
                 Console.WriteLine("Polynominal degree: {0}", polynominalResolvedSolution.Degree);
 
-                if (polynominalResolvedSolution.Degree > 2 || polynominalResolvedSolution.Roots == null)
+                if (polynominalResolvedSolution.Degree > 2)
                 {
                     Console.WriteLine("The polynominal degree > 2. I can't solve.");
+                    return;
+                }
+
+                if (polynominalResolvedSolution.Roots == null)
+                {
+                    Console.WriteLine("I can't find roots for that equation.");
                     return;
                 }
 
