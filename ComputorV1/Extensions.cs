@@ -7,6 +7,7 @@ namespace ComputorV1
 {
     public static class Extensions
     {
+        #region General extensions
         public static string[] RegexSplit(this string parameterForSplitting, string pattern)
         {
             if (string.IsNullOrWhiteSpace(pattern))
@@ -25,6 +26,9 @@ namespace ComputorV1
             }
             return true;
         }
+
+        
+
         public static List<string> GetRootsByDiscriminant(this double discriminant, double[] polynominalParts)
         {
             List<string> roots = null;
@@ -36,7 +40,7 @@ namespace ComputorV1
             roots = new List<string>();
             if (discriminant > 0)
             {
-                var sqrtDiscr = discriminant / discriminant;
+                var sqrtDiscr = discriminant.Sqrt();
                 roots.Add(((-b + sqrtDiscr) / 2 * a).ToString());
                 roots.Add(((-b - sqrtDiscr) / 2 * a).ToString());
             }
@@ -52,5 +56,22 @@ namespace ComputorV1
             }
             return roots;
         }
+        #endregion
+
+        #region Internal extensions
+        private static double Sqrt(this double numberForCalculation)
+        {
+            double root = 1;
+            int i = 0;
+
+            while (true)
+            {
+                i = i + 1;
+                root = (numberForCalculation / root + root) / 2;
+                if (i == numberForCalculation + 1) { break; }
+            }
+            return root;
+        }
+        #endregion
     }
 }
